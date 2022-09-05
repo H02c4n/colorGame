@@ -15,7 +15,7 @@
     <div id="app">
         <h1> {{title}} </h1>
         <span> {{note}}
-            <input v-model="numberOfBox" @keydown.enter="addBox; myColors();" type="number">
+            <input v-model="numberOfBox" @keydown.enter="addBox()" type="number">
         </span>
         <div class="container">
             <div @click="changeStatus(b)" v-for="b in box" :style="{'backgroundColor' : b.color}"
@@ -25,6 +25,7 @@
 
     </div>
     <script src="app.js"></script>
+    <!-- <script src="ddd.js"></script> -->
 </body>
 
 </html>

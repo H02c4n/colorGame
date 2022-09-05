@@ -3,7 +3,7 @@ const app = Vue.createApp({
     return {
       title: "COLOR GAME",
       note: "Please write how many color do you want.",
-      numberOfBox: "",
+      numberOfBox: null,
       box: [
         // { id: "1", color: "red", clicked: false },
         // { id: "2", color: "green", clicked: false },
@@ -16,15 +16,15 @@ const app = Vue.createApp({
   },
 
   methods: {
+    randomColor() {
+      return "#" + Math.floor(Math.random() * 16777215).toString(16);
+    },
     myColors() {
       this.colors = [];
       for (let i = 0; i < this.numberOfBox; i++) {
-        const rColor =
-          "#" +
-          Math.floor(Math.random() * 2 ** 24)
-            .toString(16)
-            .padStart(0, 6);
+        const rColor = this.randomColor();
 
+        this.colors[i] !== rColor ? this.colors.push(rColor) : null;
         this.colors.push(rColor);
       }
       console.log(this.colors);
@@ -44,8 +44,8 @@ const app = Vue.createApp({
       for (let i = 0; i < this.numberOfBox * 10; i++) {
         this.box.push({
           id: i,
-          color:
-            this.colors[i - Math.floor(Math.random() * this.colors.length - 1)],
+          color: this.colors[Math.floor(Math.random() * this.numberOfBox)],
+          // this.colors[i - Math.floor(Math.random() * this.colors.length - 1)],
           clicked: false,
         });
       }
